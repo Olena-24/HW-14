@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from src.schemas.user import UserResponse
 
@@ -25,5 +25,4 @@ class ContactResponse(ContactSchema):
     updated_at: datetime | None
     user_id: int | None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes = True)  # noqa

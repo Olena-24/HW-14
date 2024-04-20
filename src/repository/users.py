@@ -20,9 +20,11 @@ async def get_user_by_email(email: str, db: AsyncSession = Depends(get_db)):
     """
     stmt = select(User).filter_by(email=email)
     user = await db.execute(stmt)
-    users = user.unique()
-    for user in users:
-        return user[0]
+    #users = user.unique()
+    user_bd = user.scalars().first() 
+    #for user in users:
+    #    return user[0]
+    return user_bd
         
 async def create_user(body: UserSchema, db: AsyncSession = Depends(get_db)):
     """
